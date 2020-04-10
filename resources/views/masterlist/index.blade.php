@@ -22,10 +22,11 @@
    
     <table class="table table-bordered">
         <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Details</th>
-            <th width="280px">Action</th>
+            <th class="w-10">No</th>
+            <th class="w-30">Name</th>
+            <th class="w-40">Details</th>
+            <th class="w-10">Action</th>
+            <th class="w-10">-</th>
         </tr>
         @foreach ($masterlist as $ml)
         <tr>
@@ -40,10 +41,7 @@
 				Active
 				@endif
 			</td>
-
-            <td>
-                
-            </td>
+			<td><a class="btn btn-primary" href="{{ route('masterlist.edit',$ml->id) }}">E</a></td>
         </tr>
         @endforeach
     </table>
