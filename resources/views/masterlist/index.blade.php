@@ -30,7 +30,7 @@
         </tr>
         @foreach ($masterlist as $ml)
         <tr>
-            <td>{{ ++$i }}</td>
+            <td>{{ ++$i }} / {{ $ml->id }}</td>
             <td>{{ $ml->listname }}</td>
             <td>{{ $ml->description }}</td>
             <td>

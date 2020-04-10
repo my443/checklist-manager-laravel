@@ -8,6 +8,7 @@
         </div>
         <div class="pull-right">
 
+
             <a class="btn btn-primary" href="{{ route('masterlist.index') }}"> Back</a>
         </div>
     </div>

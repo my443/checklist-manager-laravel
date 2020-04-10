@@ -6,10 +6,18 @@
         <div class="pull-left">
             <h2>Edit Masterlist Item</h2>
         </div>
-        <div class="pull-right">
+		<div class="pull-right">
+			<a class="btn btn-primary" href="{{ route('masterlist.index') }}"> Back</a>
+		</div>
+		<div class="pull-right">
+			<form action="{{ route('masterlist.destroy',$masterlist->id) }}" method="POST">
+				@csrf
+				@method('DELETE')
 
-            <a class="btn btn-primary" href="{{ route('masterlist.index') }}"> Back</a>
-        </div>
+				<button type="submit" class="btn btn-danger">Delete</button>
+`			</form>		
+		</div>
+
     </div>
 </div>
    
