@@ -29,9 +29,10 @@
             <th class="w-5">No</th>
             <th class="w-5">Order</th>
             <th class="w-30">Name</th>
-            <th class="w-40">Details</th>
+            <th class="w-46">Details</th>
             <th class="w-10">Action</th>
-            <th class="w-10">-</th>
+            <th class="w-2">-</th>
+            <th class="w-2">-</th>
         </tr>
         @foreach ($templatelist as $template)
         <tr>

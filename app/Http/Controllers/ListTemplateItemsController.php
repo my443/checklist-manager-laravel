@@ -27,11 +27,28 @@ class ListTemplateItemsController extends Controller
 			return view('template.create', ['list_id' => $list_id]);
     }
     
-    public function edit()
+    public function edit(ListTemplateItems $template)
     {
-			$templatelist = ListTemplateItems::latest()->paginate(5);
-			return view('template.index',compact('templatelist'));
+        return view('template.edit',compact('template'));
     }
+    
+    public function update(Request $request, ListTemplateItems $template)
+    {
+		$request->validate([
+			'id_master_lists' => 'required',
+			'item_short_desc' => 'required',
+			'item_long_desc' => 'required',
+			'order_num' => 'required',
+			'active' => 'required',
+			]);
+  
+		$list_id = $request->input('id_master_lists');
+  
+        $template->update($request->all());
+   
+        return redirect()->route('template.index', ['list_id' => $list_id])
+                        ->with('success','List item updated successfully.');
+    }   
     
     public function store(Request $request)
     {
