@@ -12,7 +12,7 @@ class ListTemplateItemsController extends Controller
 		{
 			$list_id = $request->input('list_id');										// get ?list_id=x from url
 			//$templatelist = ListTemplateItems($id)::latest()->paginate(5);
-			$templatelist = ListTemplateItems::where('id_master_lists', $list_id)->paginate(10);
+			$templatelist = ListTemplateItems::where('id_master_lists', $list_id)->orderBy('id', 'DESC')->paginate(10);
 			return view('template.index',compact('templatelist'));
 			
 			//return ListTemplateItems::get();
@@ -50,4 +50,14 @@ class ListTemplateItemsController extends Controller
         return redirect()->route('template.index', ['list_id' => $list_id])
                         ->with('success','List Item created successfully.');
 		}
+		
+	    public function destroy(ListTemplateItems $template, Request $request)
+    {	
+
+
+		
+        $template->delete();
+  
+        return redirect()->route('template.index', ['list_id' => $template->id_master_lists]);
+    }
 }

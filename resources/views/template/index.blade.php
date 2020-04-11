@@ -26,7 +26,8 @@
    
     <table class="table table-bordered">
         <tr>
-            <th class="w-10">No</th>
+            <th class="w-5">No</th>
+            <th class="w-5">Order</th>
             <th class="w-30">Name</th>
             <th class="w-40">Details</th>
             <th class="w-10">Action</th>
@@ -35,6 +36,7 @@
         @foreach ($templatelist as $template)
         <tr>
             <td>{{ ++$i }} / {{ $template->id }} {{ $template->id_master_lists }}</td>
+            <td>{{ $template->order_num }}</td>
             <td>{{ $template->item_short_desc }}</td>
             <td>{{ $template->item_long_desc }}</td>
             <td>
@@ -45,8 +47,14 @@
 				Active
 				@endif
 			</td>
-			<td><a class="btn btn-primary" href="{{ route('template.edit',$template->id) }}">E</a>
-				<a class="btn btn-danger" href="{{ route('template.edit',$template->id) }}">D</a></td>
+			<td><a class="btn btn-primary" href="{{ route('template.edit',$template->id) }}">E</a></td>
+			<td>
+				<form action="{{ route('template.destroy', $template->id) }}" method="POST">
+					@csrf
+					@method('DELETE')
+
+					<button type="submit" class="btn btn-danger">D</button>
+				</td>
         </tr>
         @endforeach
     </table>
