@@ -12,7 +12,7 @@ class ListTemplateItemsController extends Controller
 		{
 			$list_id = $request->input('list_id');										// get ?list_id=x from url
 			//$templatelist = ListTemplateItems($id)::latest()->paginate(5);
-			$templatelist = ListTemplateItems::where('id_master_lists', $list_id)->orderBy('id', 'DESC')->paginate(10);
+			$templatelist = ListTemplateItems::where('id_master_lists', $list_id)->orderBy('order_num', 'ASC')->paginate(10);
 			return view('template.index',compact('templatelist'));
 			
 			//return ListTemplateItems::get();

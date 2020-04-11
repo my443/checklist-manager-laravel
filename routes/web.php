@@ -23,3 +23,6 @@ Route::resource('masterlist', 'MasterListController');
 // To show the items filtered by the list.
 //Route::get('template', 'ListTemplateItemsController@index')->name('id');
 Route::resource('template', 'ListTemplateItemsController');
+
+
+Route::get('used', 'UsedChecklistsController@index');
