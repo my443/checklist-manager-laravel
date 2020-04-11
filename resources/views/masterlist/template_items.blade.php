@@ -1,13 +1,13 @@
-@extends('masterlist.layout')
+@extends('template.layout')
  
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Checklist Manager - Master List</h2>
+                <h2>Template Manager - List Template Items</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('masterlist.create') }}"> Create New Master List</a>
+                <a class="btn btn-success" href="{{ route('templatelist.create') }}"> Create New Master List</a>
             </div>
         </div>
     </div>
@@ -28,21 +28,20 @@
             <th class="w-10">Action</th>
             <th class="w-10">-</th>
         </tr>
-        @foreach ($masterlist as $ml)
+        @foreach ($templatelist as $template)
         <tr>
             <td>{{ ++$i }} / {{ $ml->id }}</td>
-            <td>{{ $ml->listname }}</td>
-            <td>{{ $ml->description }}</td>
+            <td>{{ $template->ItemShortDesc }}</td>
+            <td>{{ $template->ItemLongDesc }}</td>
             <td>
 				
-				@if ( $ml->active <> 1)
+				@if ( $template->active <> 1)
 				Inactive
 				@else
 				Active
 				@endif
 			</td>
-			<td><a class="btn btn-primary" href="{{ route('masterlist.edit',$ml->id) }}">E</a>
-				<a class="btn btn-success" href="{{ route('template.index', ['id' => $ml->id]) }}">Go</td>
+			<td><a class="btn btn-primary" href="{{ route('templatelist.edit',$ml->id) }}">E</a></td>
         </tr>
         @endforeach
     </table>

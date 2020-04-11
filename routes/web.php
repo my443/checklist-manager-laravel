@@ -17,4 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Masterlist
 Route::resource('masterlist', 'MasterListController');
+
+// To show the items filtered by the list.
+Route::get('template', 'ListTemplateItemsController@index')->name('id');
+Route::resource('template', 'ListTemplateItemsController');

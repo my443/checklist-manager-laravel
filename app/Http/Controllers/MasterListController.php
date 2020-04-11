@@ -104,4 +104,5 @@ class MasterListController extends Controller
   
         return redirect()->route('masterlist.index');
     }
+ 
 }
