@@ -46,7 +46,7 @@ class MasterListController extends Controller
         MasterList::create($request->all());
    
         return redirect()->route('masterlist.index')
-                        ->with('success','Product created successfully.');
+                        ->with('success','Master List created successfully.');
     }
 
     /**

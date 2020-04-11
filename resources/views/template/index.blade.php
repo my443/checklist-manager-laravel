@@ -10,7 +10,7 @@
                 <a class="btn btn-info" href="{{ route('masterlist.index') }}"> Master List</a>
             </div>            
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('template.create') }}"> New Template Item</a>
+                <a class="btn btn-success" href="{{ route('template.create', ['list_id' => Request::get('list_id')]) }}"> New Template Item</a>
             </div>
 
         </div>

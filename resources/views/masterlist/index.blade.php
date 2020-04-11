@@ -42,7 +42,7 @@
 				@endif
 			</td>
 			<td><a class="btn btn-primary" href="{{ route('masterlist.edit',$ml->id) }}">E</a>
-				<a class="btn btn-success" href="{{ route('template.index', ['id' => $ml->id]) }}">Go</td>
+				<a class="btn btn-success" href="{{ route('template.index', ['list_id' => $ml->id]) }}">Go</td>
         </tr>
         @endforeach
     </table>
