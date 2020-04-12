@@ -37,7 +37,7 @@
             <td>{{ $used->masterlist['listname'] }}</td>
             <td>{{ $used->start_date }}</td>
             <td>{{ $used->completed_date }}</td>
-            <td></td>
+            <td><a class="btn btn-success" href="{{ route('initiated.index', ['list_id' => $list_id, 'initiated_id' => $used->id]) }}">Details</a></td>
         </tr>
         @endforeach
     </table>

@@ -27,3 +27,5 @@ Route::resource('template', 'ListTemplateItemsController');
 
 Route::resource('used', 'UsedChecklistsController');
 
+Route::resource('initiated', 'InitiatedListController');
+

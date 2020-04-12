@@ -17,11 +17,13 @@ class CreateInitiatedChecklistsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_masterlists');
             $table->unsignedBigInteger('id_list_templates');
+            $table->unsignedBigInteger('id_used_checklist');
             $table->boolean('complete');
             $table->timestamps();
             
             $table->foreign('id_masterlists')->references('id')->on('master_lists');
-            $table->foreign('id_list_templates')->references('id')->on('used_checklists');
+            $table->foreign('id_used_checklist')->references('id')->on('used_checklists');
+            $table->foreign('id_list_templates')->references('id')->on('list_template_items');
         });
     }
 
