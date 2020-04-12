@@ -31,7 +31,7 @@ class UsedChecklistsController extends Controller
 		DB::table('used_checklists')->insert($data);
 		
 		return redirect()->route('used.index' , ['list_id' => $list_id])
-			->with('success','New List initiated successfully.');;
+			->with('success','New List initiated successfully.');
 		
 		}
 	

@@ -26,24 +26,25 @@
             <th class="w-5">Order</th>
             <th class="w-30">Name</th>
             <th class="w-46">Details</th>
-            <th class="w-10">Action</th>
+            <th class="w-10">Status</th>
             <th class="w-2">-</th>
         </tr>
         @foreach ($allitems as $item)
         <tr>
-            <td>{{ ++$i }} / {{ $item->id }} </td>
+            <td>{{ ++$i }} / {{ $item->id }} // {{ $item->init_id }} </td>
             <td>{{ $item->order_num }}</td>
             <td>{{ $item->item_short_desc }}</td>
             <td>{{ $item->item_long_desc }}</td>
             <td>
 				
-				@if ( $item->active <> 1)
-				Inactive
+				@if ( $item->complete <> 1)
+				Not Complete
 				@else
-				Active
+				Complete
 				@endif
 			</td>
-			<td><a class="btn btn-primary" href="">C</a></td>
+			<td><a class="btn btn-primary" 
+					href="{{ route('initiated.create', ['list_id' => $list_id, 'initiated_id' => $item->initiated_id, 'template_row_id'=> $item->id, 'initiated_row_id' => $item->init_id]) }}">C</a></td>
         </tr>
         @endforeach
     </table>
