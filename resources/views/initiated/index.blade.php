@@ -44,7 +44,7 @@
 				@endif
 			</td>
 			<td><a class="btn btn-primary" 
-					href="{{ route('initiated.create', ['list_id' => $list_id, 'initiated_id' => $item->initiated_id, 'template_row_id'=> $item->id, 'initiated_row_id' => $item->init_id]) }}">C</a></td>
+					href="{{ route('initiated.create', ['list_id' => $list_id, 'initiated_id' => $item->id_used_checklist, 'template_row_id'=> $item->id, 'initiated_row_id' => $item->init_id]) }}">C</a></td>
         </tr>
         @endforeach
     </table>

@@ -22,32 +22,33 @@ class InitiatedListController extends Controller
         
         $templatelist = ListTemplateItems::where('id_master_lists', $list_id)->orderBy('order_num', 'ASC')->paginate(10);
         $committedItems = initiated_checklists::where('id_masterlists', $list_id)->where('id_used_checklist', $used_id)->paginate(10);
-
+        
+		foreach ($committedItems as $item){
+			echo $item;
+			}
+			echo '<br><br>';
         /** Loop through each item in Template item, 
          * 	If it is included already, read the value from the database.
          * 	If it isn't completed, then the value is not complete.  
          * **/
         foreach ($templatelist as $item) {
-			$itemID = $item->id;
-			$item->initiated_id = $used_id;
 			
-			if (!empty($committedItems)) {						// Find out if the array is empty
+			$itemID = $item->id;
+			$item->id_used_checklist = $used_id;						// Add another column to the $item array
+			echo $item.'<br>';
+
+			if (empty($committedItems)) {							// Find out if the array is empty
 				$item->complete 	= false;						// Item is not complete
-				$item->init_id		= 0;						// Init id = 0				
+				$item->init_id		= 0;							// Init id = 0				
 				}
-			else {
-				foreach ($committedItems as $ci) {
-					$id_used = $ci->id_used_checklist;
-					if ($id_used == $itemID) {
-						$item->complete = $ci->completed;				// Whatever value is in committedItems completed, put it in the array.
-						$item->init_id = $ci->id;							// Add the $init_id to the array.
-						}
-					else{
-						$item->complete 	= false;						// Item is not complete
-						$item->init_id		= 0;						// Init id = 0
-						}
+			else{
+				foreach ($committedItems as $com_items){
+						if($com_items->id_list_templates == $itemID){
+							$item->complete = $com_items->complete;
+							}
 					}
 				}
+			
 			
 			}
  
@@ -72,7 +73,7 @@ class InitiatedListController extends Controller
 		$template_row_id 	= $request->input('template_row_id');				// The actual row (checked or not) (from initiated_checklists)
 		$initiated_row_id 	= $request->input('initiated_row_id');				// The row_id (from template)
 		$update_value 		= 1;												// Default update value
-        //$data = array('id_masterlists'=>12, 'id_list_templates'=>34, 'id_used_checklist'=>17, 'complete' => 1);
+
 		echo $initiated_row_id;
 		
 		$data = array('id_masterlists'=>$list_id, 'id_list_templates'=>$template_row_id, 'id_used_checklist'=>$initiated_id, 'complete'=>$update_value);
@@ -82,8 +83,8 @@ class InitiatedListController extends Controller
 			}
 		
 		
-		//return redirect()->route('initiated.index' , ['list_id' => $list_id, 'initiated_id'=>$initiated_id]);
-			//		->with('success','Change successful.');	
+		return redirect()->route('initiated.index' , ['list_id' => $list_id, 'initiated_id'=>$initiated_id])
+					->with('success','Change successful.');	
     }
 
     /**
@@ -94,43 +95,7 @@ class InitiatedListController extends Controller
      */
     public function store(Request $request)
     {
-		$list_id 			= $request->input('list_id');						// The listname (from Masterlist)
-		$initiated_id 		= $request->input('initiated_id');					// The initiated list (from used_checklists)
-		$template_row_id 	= $request->input('template_row_id');				// The actual row (checked or not) (from initiated_checklists)
-		$initiated_row_id 	= $request->input('initiated_row_id');				// The row_id (from template)
-
-		//$saveditem = initiated_checklists::where('id_masterlists', $initiated_row_id);		// Get the row that is already with data.
-		
-		
-		//$data = array('id_masterlists'=>$list_id, 'id_list_tempate'=>$initiated_row_id, 'id_used_checklists'=>$initiated_id, 1);
-		$data = array('id_masterlists'=>12, 'id_list_tempates'=>34, 'id_used_checklist'=>17, 'complete' => 1);
-		
-		DB::table('initiated_checklists')->insert($data);		
-		
-		//// If the row # is 0 -- Create a new row.
-		//if ($initiated_row_id == 0){
-			//echo 'got here';
-			//$data = array('id_masterlists'=>$list_id, 'id_list_tempate'=>$initiated_row_id, 'id_used_checklists'=>$initiated_id, 1);
-		
-			//DB::table('initiated_checklists')->insert($data);
-			//}
-		//else {
-			//// If the row # is something else, then add it as complete.	
-			//if ($saveditem->complete == 0) {
-				//$update_value = 1;
-			//}
-			//else {
-				//$update_value = 0;
-				//}
-				
-				//$data = array('id_masterlists'=>$list_id, 'id_list_tempate'=>$initiated_row_id, 'id_used_checklists'=>$initiated_id, $update_value);
-			
-				//DB::table('initiated_checklists')->where('id', checklist_row_id)->update($data);
-			//}
-		
-			//return redirect()->route('initiated.index' , ['list_id' => $list_id, 'initiated_id'=>$initiated_id])
-			//		->with('success','Change successful.');	
-		
+		//		
     }
 
     /**
