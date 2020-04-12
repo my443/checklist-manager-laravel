@@ -25,4 +25,5 @@ Route::resource('masterlist', 'MasterListController');
 Route::resource('template', 'ListTemplateItemsController');
 
 
-Route::get('used', 'UsedChecklistsController@index');
+Route::resource('used', 'UsedChecklistsController');
+

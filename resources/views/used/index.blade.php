@@ -4,11 +4,14 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Template Manager - List Template Items</h2>
+                <h2>Complete or In-Use Checklists</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-info" href="{{ route('masterlist.index') }}"> Master List</a>
-            </div>            
+            </div>
+            <div class="pull-right"> 
+                <a class="btn btn-success" href="{{ route('used.create', ['list_id' => $list_id]) }}">Initiate New Checklist</a>
+            </div>              
         </div>
     </div>
    <?php 
@@ -31,9 +34,10 @@
         @foreach ($allitems as $used)
         <tr>
             <td>{{ ++$i }} / {{ $used->id }} {{ $used->id_master_lists }}</td>
-            <td>{{ $used->MasterLists->listname }}</td>
+            <td>{{ $used->masterlist['listname'] }}</td>
             <td>{{ $used->start_date }}</td>
             <td>{{ $used->completed_date }}</td>
+            <td></td>
         </tr>
         @endforeach
     </table>

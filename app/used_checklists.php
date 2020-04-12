@@ -11,7 +11,8 @@ class used_checklists extends Model
     ];
 
 		// Connects the foreign key. (see Masterlist for recipricol.)
+		// https://laravel-recipes.com/trying-to-get-property-of-non-object-laravel/
 		public function masterlist() {
-			$this->belongsTo('App\MasterList');
+			return $this->belongsTo('App\MasterList', 'id_masterlists');
 		}
 }
