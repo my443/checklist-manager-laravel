@@ -24,7 +24,7 @@ class UsedChecklistsController extends Controller
 		$list_id = $request->input('list_id');
 		
 		$id_masterlist = $list_id;
-		$start_date 	= '2020-04-11';
+		$start_date 	= date('Y-m-d');
 		
 		$data = array('id_masterlists'=>$id_masterlist, 'start_date'=>$start_date);
 		

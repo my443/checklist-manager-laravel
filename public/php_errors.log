@@ -1,1 +1,2 @@
 [12-Apr-2020 21:45:14 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 60821504 bytes) in C:\Users\John\Documents\FortFour-Three\Projects\008 Checklist Manager\ChecklistManager\app\Http\Controllers\InitiatedListController.php on line 25
+[12-Apr-2020 23:51:39 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 62918656 bytes) in C:\Users\John\Documents\FortFour-Three\Projects\008 Checklist Manager\ChecklistManager\app\Http\Controllers\InitiatedListController.php on line 81

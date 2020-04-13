@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\initiated_checklists;
 use App\ListTemplateItems;
+use App\MasterList;
+
 use DB;
 
 class InitiatedListController extends Controller
@@ -18,15 +20,15 @@ class InitiatedListController extends Controller
     public function index(Request $request)
     {
         $list_id = $request->input('list_id');	
-        $used_id = $request->input('initiated_id');	
-        
+        $used_id = $request->input('initiated_id');
+       	
         $templatelist = ListTemplateItems::where('id_master_lists', $list_id)->orderBy('order_num', 'ASC')->paginate(10);
         $committedItems = initiated_checklists::where('id_masterlists', $list_id)->where('id_used_checklist', $used_id)->paginate(10);
         
-		foreach ($committedItems as $item){
-			echo $item;
-			}
-			echo '<br><br>';
+		//foreach ($committedItems as $item){
+			//echo $item;
+			//}
+			//echo '<br><br>';
         /** Loop through each item in Template item, 
          * 	If it is included already, read the value from the database.
          * 	If it isn't completed, then the value is not complete.  
@@ -35,7 +37,7 @@ class InitiatedListController extends Controller
 			
 			$itemID = $item->id;
 			$item->id_used_checklist = $used_id;						// Add another column to the $item array
-			echo $item.'<br>';
+			//echo $item.'<br>';
 
 			if (empty($committedItems)) {							// Find out if the array is empty
 				$item->complete 	= false;						// Item is not complete
@@ -46,10 +48,9 @@ class InitiatedListController extends Controller
 						if($com_items->id_list_templates == $itemID){
 							$item->complete = $com_items->complete;
 							}
-					}
+						}
 				}
-			
-			
+
 			}
  
          $allitems = $templatelist;
@@ -73,15 +74,12 @@ class InitiatedListController extends Controller
 		$template_row_id 	= $request->input('template_row_id');				// The actual row (checked or not) (from initiated_checklists)
 		$initiated_row_id 	= $request->input('initiated_row_id');				// The row_id (from template)
 		$update_value 		= 1;												// Default update value
-
-		echo $initiated_row_id;
 		
 		$data = array('id_masterlists'=>$list_id, 'id_list_templates'=>$template_row_id, 'id_used_checklist'=>$initiated_id, 'complete'=>$update_value);
 		
 		if ($initiated_row_id == 0) {
 			DB::table('initiated_checklists')->insert($data);		
 			}
-		
 		
 		return redirect()->route('initiated.index' , ['list_id' => $list_id, 'initiated_id'=>$initiated_id])
 					->with('success','Change successful.');	
