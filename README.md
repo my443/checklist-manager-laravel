@@ -20,7 +20,7 @@ Add or remove items from your checklists.<br>
 Complete items on the checklist.<br>
 <img src="https://raw.githubusercontent.com/my443/checklist-manager-laravel/master/img/Screenshot3.png" alt="Screenshot #3"><br>
 
-/div>
+</div>
 
 
 ## TODO
